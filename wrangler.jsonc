@@ -21,13 +21,14 @@
   //     "bucket_name": "my-bucket"
   //   }
   // ],
-  // "d1_databases": [
-  //   {
-  //     "binding": "MY_DB",
-  //     "database_name": "my-database",
-  //     "database_id": ""
-  //   }
-  // ],
+   "d1_databases": [
+    {
+      "binding": "DB",   // MUST be exactly DB
+      "database_name": "dutch-antiques-production",
+      "database_id": "d8837d09-e280-4388-9928-68524d3d7792"
+    }
+  ],
+
   // "ai": {
   //   "binding": "AI"
   // }
