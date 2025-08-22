@@ -30,7 +30,7 @@ export function Card({ o, loc }: { o: ObjectItem; loc: Locale }) {
   return (
     <article class="card">
       <a href={`/${loc}/object/${o.slug}`} aria-label={title}>
-        <img class="card-img" src={o.images[0]?.url} alt={loc==='nl'?o.images[0]?.alt_nl:o.images[0]?.alt_en} loading="lazy" />
+        <img class="card-img" src={o.images[0]?.url} alt={loc==='nl'?o.images[0]?.alt_nl:o.images[0]?.alt_en} loading="lazy" style="background:linear-gradient(180deg, rgba(59,42,26,.2), rgba(59,42,26,.05));" />
       </a>
       <div class="card-body">
         <div class="badge" aria-label="category">{o.category}</div>
@@ -59,18 +59,18 @@ export function FilterBar({ loc, values }: { loc: Locale; values: URLSearchParam
     </div>
   )
   return (
-    <form class="filterbar" method="GET" role="search" aria-label="{T.filters.search}">
+    <form class="filterbar" method="GET" role="search" aria-label={T.filters.search}>
       {input('q', <input id="q" name="q" placeholder={T.filters.search} defaultValue={values.get('q')||''} class="focus-ring" />)}
-      {input('category', <select id="category" name="category" class="focus-ring"><option value="">{T.filters.category}</option><option>Drawings</option><option>Glasswork</option><option>Bodemvondsten</option></select>)}
+      {input('category', <select id="category" name="category" class="focus-ring" defaultValue={values.get('category')||''}><option value="">{T.filters.category}</option><option>Drawings</option><option>Glasswork</option><option>Bodemvondsten</option></select>)}
       {input('material', <input id="material" name="material" placeholder={T.filters.material} defaultValue={values.get('material')||''} class="focus-ring" />)}
       {input('maker', <input id="maker" name="maker" placeholder={T.filters.maker} defaultValue={values.get('maker')||''} class="focus-ring" />)}
-      {input('period', <select id="period" name="period" class="focus-ring"><option value="">{T.filters.period}</option><option>13th c.</option><option>14th c.</option><option>15th c.</option><option>16th c.</option><option>17th c.</option><option>18th c.</option><option>19th c.</option></select>)}
-      <select id="sort" name="sort" class="focus-ring">
+      {input('period', <select id="period" name="period" class="focus-ring" defaultValue={values.get('period')||''}><option value="">{T.filters.period}</option><option>13th c.</option><option>14th c.</option><option>15th c.</option><option>16th c.</option><option>17th c.</option><option>18th c.</option><option>19th c.</option></select>)}
+      <select id="sort" name="sort" class="focus-ring" defaultValue={values.get('sort')||'maker_az'}>
         <option value="maker_az">{T.filters.sort_maker}</option>
         <option value="year_asc">{T.filters.sort_year_asc}</option>
         <option value="year_desc">{T.filters.sort_year_desc}</option>
       </select>
-      <button class="reset focus-ring" type="submit">{T.filters.sort}</button>
+      <button class="reset focus-ring" type="submit">Apply</button>
       <a class="reset focus-ring" href="?">{T.filters.reset}</a>
     </form>
   )

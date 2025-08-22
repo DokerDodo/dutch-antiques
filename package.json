@@ -6,7 +6,13 @@
     "build": "vite build",
     "preview": "wrangler pages dev dist",
     "deploy": "npm run build && wrangler pages deploy dist --project-name webapp",
-    "cf-typegen": "wrangler types --env-interface CloudflareBindings"
+    "cf-typegen": "wrangler types --env-interface CloudflareBindings",
+    "db:migrate:local": "wrangler d1 migrations apply webapp-production --local",
+    "db:console:local": "wrangler d1 execute webapp-production --local",
+    "db:seed:local": "wrangler d1 execute webapp-production --local --file=./seed.sql",
+    "db:reset": "rm -rf .wrangler/state/v3/d1 && npm run db:migrate:local",
+    "db:seed": "node --loader tsx ./scripts/seed_runner.ts",
+    "db:console:prod": "wrangler d1 execute webapp-production"
   },
   "dependencies": {
     "hono": "^4.9.4"

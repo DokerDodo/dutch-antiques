@@ -1,12 +1,14 @@
 import { jsxRenderer } from 'hono/jsx-renderer'
 
-export const renderer = jsxRenderer(({ children, title = 'Dutch Antiques' }) => {
+export const renderer = jsxRenderer(({ children, title = 'Dutch Antiques', meta = {} as Record<string,string>, links = [] as Array<{ rel: string; href: string; hrefLang?: string }> }) => {
   return (
     <html lang="en">
       <head>
         <meta charSet="utf-8" />
         <meta name="viewport" content="width=device-width, initial-scale=1" />
         <title>{title}</title>
+        {Object.entries(meta).map(([name, content]) => <meta name={name} content={content} />)}
+        {links.map((l) => <link rel={l.rel} href={l.href} hrefLang={l.hrefLang} />)}
         <meta name="theme-color" content="#F8F3E7" />
         <link href="/static/styles.css" rel="stylesheet" />
       </head>
