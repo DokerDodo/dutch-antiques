@@ -58,7 +58,10 @@ export function FilterBar({ loc, values }: { loc: Locale; values: URLSearchParam
       {node}
     </div>
   )
+  const chips = [] as any[]
+  values.forEach((v, k) => { if (v && k !== 'page') chips.push(<span class="chip">{k}: {v} <a href={(() => { const p = new URLSearchParams(values); p.delete(k); return `?${p.toString()}` })()} aria-label={`Remove ${k}`}>×</a></span>) })
   return (
+    <> 
     <form class="filterbar" method="GET" role="search" aria-label={T.filters.search}>
       {input('q', <input id="q" name="q" placeholder={T.filters.search} defaultValue={values.get('q')||''} class="focus-ring" />)}
       {input('category', <select id="category" name="category" class="focus-ring" defaultValue={values.get('category')||''}><option value="">{T.filters.category}</option><option>Drawings</option><option>Glasswork</option><option>Bodemvondsten</option></select>)}
@@ -73,5 +76,7 @@ export function FilterBar({ loc, values }: { loc: Locale; values: URLSearchParam
       <button class="reset focus-ring" type="submit">Apply</button>
       <a class="reset focus-ring" href="?">{T.filters.reset}</a>
     </form>
+    {chips.length ? <div class="chips">{chips}</div> : null}
+    </>
   )
 }
