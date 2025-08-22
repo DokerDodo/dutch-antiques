@@ -1,0 +1,3 @@
+This folder holds placeholder demo images referenced by the app.
+Add royalty-free/public-domain images from 1200–1850 only for the demo.
+Files referenced: etching1.jpg, etching1-detail.jpg, goblet.jpg, shard.jpg, drawing.jpg, beaker.jpg
